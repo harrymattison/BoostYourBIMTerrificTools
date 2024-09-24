@@ -2,6 +2,7 @@
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
 		None
 	</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
