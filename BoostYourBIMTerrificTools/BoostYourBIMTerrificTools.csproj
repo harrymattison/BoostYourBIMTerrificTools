@@ -36,6 +36,9 @@
 <ItemGroup>
   <PackageReference Include="EPPlus" Version="4.5.3.3" />
   <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+  <PackageReference Include="Nice3point.Revit.Api.AdWindows" Version="2025.2.0" />
+  <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="2025.2.0" />
+  <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="2025.2.0" />
 </ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
