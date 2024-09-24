@@ -92,7 +92,7 @@ namespace WallOpeningArea
           sharedParamDefGroup.Definitions.get_Item(
           PARAMETER_SMALL_OPEN_NAME);
       if (paramSmallOpeningDef == null)
-#if RELEASE2023 || RELEASE2024
+#if !PRE_FORGETYPE
                 paramSmallOpeningDef =
         sharedParamDefGroup.Definitions.Create(new ExternalDefinitionCreationOptions(
         PARAMETER_SMALL_OPEN_NAME,
@@ -113,7 +113,7 @@ namespace WallOpeningArea
         sharedParamDefGroup.Definitions.get_Item( 
         PARAMETER_TOTAL_OPEN_NAME);
       if (paramTotalOpeningDef == null)
-#if RELEASE2023 || RELEASE2024
+#if !PRE_FORGETYPE
                 paramTotalOpeningDef =
             sharedParamDefGroup.Definitions.Create(new ExternalDefinitionCreationOptions(
             PARAMETER_TOTAL_OPEN_NAME, 

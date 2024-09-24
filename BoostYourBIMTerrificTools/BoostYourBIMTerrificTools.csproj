@@ -1,10 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+﻿<Project Sdk="Microsoft.NET.Sdk">    <PropertyGroup>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+		None
+	</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	<Configurations>2022;2023;2024;2025</Configurations>
     <RootNamespace>BoostYourBIMTerrificTools</RootNamespace>
-    <ProjectGuid>{0A201067-FCB2-4CB9-9DCA-8184CA5E2460}</ProjectGuid>
+	<BaseOutputPath>.\bin</BaseOutputPath>
     <OutputType>Library</OutputType>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -13,72 +17,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2019|AnyCPU' ">
-    <OutputPath>bin\2019\</OutputPath>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-    <DefineConstants>RELEASE2019;PREFORGETYPEID</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">
-    <OutputPath>bin\2020\</OutputPath>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-    <DefineConstants>RELEASE2020;PREFORGETYPEID</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2021|AnyCPU'">
-    <OutputPath>bin\2021\</OutputPath>
-    <DefineConstants>RELEASE2021</DefineConstants>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2018|AnyCPU'">
-    <OutputPath>bin\2018\</OutputPath>
-    <DefineConstants>RELEASE2018;PREFORGETYPEID</DefineConstants>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2017|AnyCPU'">
-    <OutputPath>bin\2017\</OutputPath>
-    <DefineConstants>RELEASE2017;PREFORGETYPEID</DefineConstants>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2012|AnyCPU'">
-    <OutputPath>bin\2012\</OutputPath>
-    <DefineConstants>RELEASE2012;PREFORGETYPEID</DefineConstants>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2013|AnyCPU'">
-    <OutputPath>bin\2013\</OutputPath>
-    <DefineConstants>RELEASE2013;PREFORGETYPEID</DefineConstants>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2014|AnyCPU'">
-    <OutputPath>bin\2014\</OutputPath>
-    <DefineConstants>RELEASE2014;PREFORGETYPEID</DefineConstants>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2015|AnyCPU'">
-    <OutputPath>bin\2015\</OutputPath>
-    <DefineConstants>RELEASE2015;PREFORGETYPEID</DefineConstants>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2016|AnyCPU'">
-    <OutputPath>bin\2016\</OutputPath>
-    <DefineConstants>RELEASE2016;PREFORGETYPEID</DefineConstants>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2022|AnyCPU'">
-    <OutputPath>bin\2022\</OutputPath>
-    <DefineConstants>RELEASE2022</DefineConstants>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2023|AnyCPU'">
-    <OutputPath>bin\2023\</OutputPath>
-    <DefineConstants>RELEASE2023</DefineConstants>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2024|AnyCPU'">
-    <OutputPath>bin\2023\</OutputPath>
-    <DefineConstants>RELEASE2024</DefineConstants>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-  </PropertyGroup>
+<PropertyGroup Condition="$(Configuration) == '2023'">
+	<RevitVersion>2023</RevitVersion>
+	<DefineConstants>R2023;PRE_NET_8</DefineConstants>
+	<TargetFramework>net48</TargetFramework>
+</PropertyGroup>
+<PropertyGroup Condition="$(Configuration) == '2024'">
+	<RevitVersion>2024</RevitVersion>
+	<DefineConstants>R2024;PRE_NET_8</DefineConstants>
+	<TargetFramework>net48</TargetFramework>
+</PropertyGroup>
+<PropertyGroup Condition="$(Configuration) == '2025'">
+	<DefineConstants>R2025</DefineConstants>
+	<TargetFramework>net8.0-windows</TargetFramework>
+</PropertyGroup>
+<ItemGroup>
+  <PackageReference Include="EPPlus" Version="4.5.3.3" />
+  <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+</ItemGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -91,353 +49,16 @@
     <Reference Include="RevitAPIUI">
       <HintPath>c:\Program Files\Autodesk\Revit $(Configuration)\RevitAPIUI.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UIAutomationProvider" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="WindowsFormsIntegration" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' != '2013' And '$(Configuration)' != '2014'">
-    <Compile Include="DBSpy\Command.cs" />
-    <Compile Include="DBSpy\Database.cs" />
-    <Compile Include="DBSpy\EventHandler.cs" />
-    <Compile Include="DBSpy\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DBSpy\Utils.cs" />
-    <Compile Include="DBSpy\ViewModel\ColorViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\BoolViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\DoubleViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\ElementArrayViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\ElementViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\IdViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\IntViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\PropertyInfoViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\RevitCategoryViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\RevitDBViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\StringViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\TreeViewItemViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\WorksetIdViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\XYZNamedViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\XYZViewModel.cs" />
-    <Compile Include="DockableSample\DockableSample.cs" />
-    <Compile Include="DockableSample\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Page Include="DBSpy\MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AreaSchemeDuplicate\AreaSchemeDuplicate.cs" />
-    <Compile Include="Contact.cs" />
-    <Compile Include="CreatedHow\CreatedHow.cs" />
-    <Compile Include="CurtainGridFromLine\CurtainGridFromLine.cs" />
-    <Compile Include="DBSpy\ViewModel\SolidViewModel.cs" />
-    <Compile Include="DBSpy\ViewModel\LineViewModel.cs" />
-    <Compile Include="ExternalEventWrapper.cs" />
-    <Compile Include="FamilyRename\FamilyRename.cs" />
-    <Compile Include="formProgress.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formProgress.Designer.cs">
-      <DependentUpon>formProgress.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ImageOMatic\Command.cs" />
-    <Compile Include="ImageOMatic\formParameterAnimator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImageOMatic\formParameterAnimator.designer.cs">
-      <DependentUpon>formParameterAnimator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ImageOMatic\Utils.cs" />
-    <Compile Include="IssueList\RevisionUpdater.cs" />
-    <Compile Include="KeyboardShortcutTutor\FrmHint.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="KeyboardShortcutTutor\FrmHint.designer.cs">
-      <DependentUpon>FrmHint.cs</DependentUpon>
-    </Compile>
-    <Compile Include="KeyboardShortcutTutor\FrmShortcutList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="KeyboardShortcutTutor\FrmShortcutList.designer.cs">
-      <DependentUpon>FrmShortcutList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="KeyboardShortcutTutor\keyboardShortcutTutor.cs" />
-    <Compile Include="Learn.cs" />
-    <Compile Include="LevelDisplacer\FrmLevelDisplacer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LevelDisplacer\FrmLevelDisplacer.designer.cs">
-      <DependentUpon>FrmLevelDisplacer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LevelDisplacer\levelDisplacer.cs" />
-    <Compile Include="LevelGenerator\AddLevelForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LevelGenerator\AddLevelForm.designer.cs">
-      <DependentUpon>AddLevelForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LevelGenerator\Command.cs" />
-    <Compile Include="LevelGenerator\FirstLevelNameForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LevelGenerator\FirstLevelNameForm.designer.cs">
-      <DependentUpon>FirstLevelNameForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LevelGenerator\FormElevation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LevelGenerator\FormElevation.designer.cs">
-      <DependentUpon>FormElevation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ModelCompare\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ModelCompare\ModelCompare.cs" />
-    <Compile Include="PaintStripper\FormPaintStripper.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PaintStripper\FormPaintStripper.Designer.cs">
-      <DependentUpon>FormPaintStripper.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PaintStripper\PaintStripper.cs" />
-    <Compile Include="ParameterSearch\Command.cs" />
-    <Compile Include="ParameterSearch\JtLogFile.cs" />
-    <Compile Include="ParameterSearch\JtWindowHandle.cs" />
-    <Compile Include="ParameterSearch\PropertyComparer.cs" />
-    <Compile Include="ParameterSearch\SearchForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ParameterSearch\SearchForm.designer.cs">
-      <DependentUpon>SearchForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ParameterSearch\SearchHit.cs" />
-    <Compile Include="ParameterSearch\SearchHitNavigator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ParameterSearch\SearchHitNavigator.designer.cs">
-      <DependentUpon>SearchHitNavigator.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ParameterSearch\SearchOptions.cs" />
-    <Compile Include="ParameterSearch\SortableBindingList.cs" />
-    <Compile Include="ParameterSearch\StringSearcher.cs" />
-    <Compile Include="PdfNameCleanup.cs" />
-    <Compile Include="PinComment\pinCommand.cs" />
-    <Compile Include="PinComment\Utils.cs" />
-    <Compile Include="PinComment\PinCommentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PinComment\PinCommentForm.Designer.cs">
-      <DependentUpon>PinCommentForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PrintSuppression\FormPrintSuppression.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PrintSuppression\FormPrintSuppression.Designer.cs">
-      <DependentUpon>FormPrintSuppression.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PrintSuppression\PrintSuppression.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Ribbon.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoomAreaBoundaries\RoomAreaBoundaries.cs" />
-    <Compile Include="SectionBoxFit\FrmSectionBoxFit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SectionBoxFit\FrmSectionBoxFit.Designer.cs" />
-    <Compile Include="SectionBoxFit\SectionBoxFit.cs" />
-    <Compile Include="SelectByType\FormSelectByType.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SelectByType\FormSelectByType.designer.cs">
-      <DependentUpon>FormSelectByType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SelectByType\SelectByType.cs" />
-    <Compile Include="SelectIntersecting\selectIntersecting.cs" />
-    <Compile Include="SketchConvert\FormSketchConvert.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SketchConvert\FormSketchConvert.Designer.cs">
-      <DependentUpon>FormSketchConvert.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SketchConvert\SketchConvert.cs" />
-    <Compile Include="SubcategoryMerge\FormSubcatMerge.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SubcategoryMerge\FormSubcatMerge.Designer.cs">
-      <DependentUpon>FormSubcatMerge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SubcategoryMerge\SubcategoryMerge.cs" />
-    <Compile Include="Support.cs" />
-    <Compile Include="TopoFromLines.cs" />
-    <Compile Include="TreeViewWithCheckBoxes\FooViewModel.cs" />
-    <Compile Include="TreeViewWithCheckBoxes\VirtualToggleButton.cs" />
-    <Compile Include="TreeViewWithCheckBoxes\Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Units2021FamilyTypeUpgrade.cs" />
-    <Compile Include="Utils.cs" />
-    <Compile Include="VCExtensibleStorageExtension\AttributeExtractor.cs" />
-    <Compile Include="VCExtensibleStorageExtension\Attributes\FieldAttribute.cs" />
-    <Compile Include="VCExtensibleStorageExtension\Attributes\SchemaNameAttribute.cs" />
-    <Compile Include="VCExtensibleStorageExtension\ElementExtensions\RevitEntityElementExtension.cs" />
-    <Compile Include="VCExtensibleStorageExtension\EntityConverter.cs" />
-    <Compile Include="VCExtensibleStorageExtension\IEntityConverter.cs" />
-    <Compile Include="VCExtensibleStorageExtension\IFieldFactory.cs" />
-    <Compile Include="VCExtensibleStorageExtension\IRevitEntity.cs" />
-    <Compile Include="VCExtensibleStorageExtension\ISchemaCreator.cs" />
-    <Compile Include="VCExtensibleStorageExtension\SchemaCreator.cs" />
-    <Compile Include="ViewRangeLines.cs" />
-    <Compile Include="ViewRangeLinesSet.cs" />
-    <Compile Include="WallOpeningArea\Command.cs" />
-    <Compile Include="WallOpeningArea\SearchConfigForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WallOpeningArea\SearchConfigForm.Designer.cs">
-      <DependentUpon>SearchConfigForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WallOpeningArea\SharedParameterFunctions.cs" />
-    <Compile Include="WallOpeningArea\WallAreaFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="formProgress.resx">
-      <DependentUpon>formProgress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImageOMatic\formParameterAnimator.resx">
-      <DependentUpon>formParameterAnimator.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="KeyboardShortcutTutor\FrmHint.resx">
-      <DependentUpon>FrmHint.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="KeyboardShortcutTutor\FrmShortcutList.resx">
-      <DependentUpon>FrmShortcutList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LevelDisplacer\FrmLevelDisplacer.resx">
-      <DependentUpon>FrmLevelDisplacer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LevelGenerator\AddLevelForm.resx">
-      <DependentUpon>AddLevelForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LevelGenerator\FirstLevelNameForm.resx">
-      <DependentUpon>FirstLevelNameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LevelGenerator\FormElevation.resx">
-      <DependentUpon>FormElevation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PaintStripper\FormPaintStripper.resx">
-      <DependentUpon>FormPaintStripper.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ParameterSearch\SearchForm.resx">
-      <DependentUpon>SearchForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ParameterSearch\SearchHitNavigator.resx">
-      <DependentUpon>SearchHitNavigator.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PinComment\PinCommentForm.resx">
-      <DependentUpon>PinCommentForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PrintSuppression\FormPrintSuppression.resx">
-      <DependentUpon>FormPrintSuppression.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SectionBoxFit\FrmSectionBoxFit.resx" />
-    <EmbeddedResource Include="SelectByType\FormSelectByType.resx">
-      <DependentUpon>FormSelectByType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SketchConvert\FormSketchConvert.resx">
-      <DependentUpon>FormSketchConvert.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SubcategoryMerge\FormSubcatMerge.resx">
-      <DependentUpon>FormSubcatMerge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WallOpeningArea\SearchConfigForm.resx">
-      <DependentUpon>SearchConfigForm.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="DockableSample\MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ModelCompare\MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="TreeViewWithCheckBoxes\Window1.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
+    <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="VCExtensibleStorageExtension\VCExtensibleStorageExtension.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ImageFiles\BoostYourBIMlogo16.png" />
-    <EmbeddedResource Include="ImageFiles\BoostYourBIMlogo32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ImageFiles\NoPrint.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ImageFiles\pin.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ImageFiles\NoPrint16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="EPPlus">
-      <Version>4.5.3.3</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ImageFiles\ParameterSearch.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ImageFiles\LevelGenerator2_32.png" />
-    <EmbeddedResource Include="ImageFiles\LevelGenerator2_16.png" />
-    <EmbeddedResource Include="ImageFiles\LevelDisplacer16.png" />
-    <EmbeddedResource Include="ImageFiles\LevelDisplacer32.png" />
-    <EmbeddedResource Include="ImageFiles\WallOpeningArea32.png" />
-    <EmbeddedResource Include="ImageFiles\ImageOMatic16.png" />
-    <EmbeddedResource Include="ImageFiles\ImageOMatic32.png" />
-    <EmbeddedResource Include="ImageFiles\ImageOMaticTooltip.png" />
-    <EmbeddedResource Include="ImageFiles\KeyboardShortcutTutor32.png" />
-    <EmbeddedResource Include="ImageFiles\SelectIntersecting16.png" />
-    <EmbeddedResource Include="ImageFiles\SelectIntersecting32.png" />
-    <Content Include="LevelDisplacer\Level Displacer Help.txt" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64\signtool.exe" sign /f "C:\Users\harry\Documents\Boost Your BIM\BoostYourBIM.pfx" /fd SHA256 /p $(CodeSignPassword) /v $(TargetPath)
-
-mkdir "C:\ProgramData\Autodesk\Revit\Addins\$(Configuration)\$(TargetName)"
-copy /Y $(SolutionDir)$(TargetName).addin "C:\ProgramData\Autodesk\Revit\Addins\$(Configuration)\"
-copy /Y $(TargetPath) "C:\ProgramData\Autodesk\Revit\Addins\$(Configuration)\$(TargetName)"
-copy /Y $(TargetDir)$(TargetName).pdb "C:\ProgramData\Autodesk\Revit\Addins\$(Configuration)\$(TargetName)"
-
-REM "C:\Program Files\Autodesk\Revit $(Configuration)\Revit.exe"
-
-REM "C:\Program Files\Autodesk\Revit $(Configuration)\Revit.exe" C:\Users\harry\Documents\rvt\test.rvt</PostBuildEvent>
-  </PropertyGroup>
 </Project>

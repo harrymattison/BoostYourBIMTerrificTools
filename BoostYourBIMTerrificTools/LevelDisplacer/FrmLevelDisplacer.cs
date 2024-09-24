@@ -61,7 +61,7 @@ namespace LevelDisplacer
             bool errorZ = !Double.TryParse(txtZ.Text, out d);
 
             if (errorX || errorY || errorZ)
-                TaskDialog.Show("Error", "All increments must be numbers.");
+                Autodesk.Revit.UI.TaskDialog.Show("Error", "All increments must be numbers.");
             else
             {
                 this.DialogResult = DialogResult.OK;

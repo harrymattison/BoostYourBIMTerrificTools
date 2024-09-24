@@ -1,0 +1,98 @@
+name: Build 2023 2024 2025
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: windows-2022
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+      - name: setup-msbuild
+        uses: microsoft/setup-msbuild@v1.1
+      - uses: actions/checkout@v4
+      - name: Restore Packages 2023
+        run: nuget restore BoostYourBIMTerrificTools.sln
+        env:
+          NUGET_RESTORE_MSBUILD_ARGS: /p:Configuration=2023
+      - name: Build 2023
+        run: msbuild BoostYourBIMTerrificTools.sln -t:rebuild -property:Configuration=2023
+      - name: Restore Packages 2024
+        run: nuget restore BoostYourBIMTerrificTools.sln
+        env:
+          NUGET_RESTORE_MSBUILD_ARGS: /p:Configuration=2024
+      - name: Build 2024
+        run: msbuild BoostYourBIMTerrificTools.sln -t:rebuild -property:Configuration=2024
+      - name: Restore Packages
+        run: nuget restore BoostYourBIMTerrificTools.sln
+        env:
+          NUGET_RESTORE_MSBUILD_ARGS: /p:Configuration=2025
+      - name: Build 2025
+        run: msbuild BoostYourBIMTerrificTools.sln -t:rebuild -property:Configuration=2025
+      - name: Create Code Signing Certificate
+        run: |
+          mkdir certificate
+          Set-Content -Path certificate/certificate.txt -Value '${{ secrets.PFX_CONTENTS }}'
+          certutil -decode certificate/certificate.txt certificate/certificate.pfx
+      - name: Code Sign 2023
+        run: |
+          & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.22000.0/x86/signtool.exe' sign /f certificate/certificate.pfx /p '${{ secrets.PFX_PASSWORD }}' /fd SHA256 /t http://timestamp.comodoca.com/authenticode BoostYourBIMTerrificTools\bin\2023\BoostYourBIMTerrificTools.dll
+      - name: Code Sign 2024
+        run: |
+          & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.22000.0/x86/signtool.exe' sign /f certificate/certificate.pfx /p '${{ secrets.PFX_PASSWORD }}' /fd SHA256 /t http://timestamp.comodoca.com/authenticode BoostYourBIMTerrificTools\bin\2024\BoostYourBIMTerrificTools.dll
+      - name: Code Sign 2025
+        run: |
+          & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.22000.0/x86/signtool.exe' sign /f certificate/certificate.pfx /p '${{ secrets.PFX_PASSWORD }}' /fd SHA256 /t http://timestamp.comodoca.com/authenticode BoostYourBIMTerrificTools\bin\2025\BoostYourBIMTerrificTools.dll
+      - name: Read AssemblyInfo.cs
+        id: assemblyinfo
+        uses: jaywcjlove/github-action-read-file@main
+        with:
+          path: BoostYourBIMTerrificTools/Properties/AssemblyInfo.cs
+      - name: Get version
+        id: get_version_number
+        uses: actions-ecosystem/action-regex-match@v2
+        with:
+          text: ${{ steps.assemblyinfo.outputs.content }}
+          regex: 'AssemblyVersion\(\"([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)\"'
+      - name: Build AIP
+        uses: caphyon/advinst-github-action@v1.0
+        with:
+          advinst-version: '21.9'
+          advinst-license: ${{ secrets.ADVINST_LICENSE_KEY }}
+          advinst-enable-automation: 'true'
+          aip-path: ${{ github.workspace }}\BoostYourBIMTerrificTools.aip
+          aip-build-name: DefaultBuild
+          aip-package-name: BoostYourBIMTerrificTools.msi
+          aip-output-dir:  ${{ github.workspace }}\setup
+          aip-commands: |
+            SetVersion ${{steps.get_version_number.outputs.group1}}
+      - name: Code Sign MSI
+        run: |
+          & 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.22000.0/x86/signtool.exe' sign /f certificate/certificate.pfx /p '${{ secrets.PFX_PASSWORD }}' /fd SHA256 /t http://timestamp.comodoca.com/authenticode setup\BoostYourBIMTerrificTools.msi
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.3.6
+        with:
+          name: setup
+          path: ${{ github.workspace }}\setup\BoostYourBIMTerrificTools.msi
+      - name: Push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          custom_tag: ${{steps.get_version_number.outputs.group1}}
+      - name: Create Release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+          artifacts: ${{ github.workspace }}\setup\BoostYourBIMTerrificTools.msi

@@ -188,9 +188,9 @@ namespace StringSearch
                         }
 
                         if (message.Length > 0)
-                            TaskDialog.Show("Alert", message);
+                            Autodesk.Revit.UI.TaskDialog.Show("Alert", message);
                         else if (data.Count == 0)
-                            TaskDialog.Show("Alert", "No matches found");
+                            Autodesk.Revit.UI.TaskDialog.Show("Alert", "No matches found");
                     }
 
                     if (data.Count > 0)

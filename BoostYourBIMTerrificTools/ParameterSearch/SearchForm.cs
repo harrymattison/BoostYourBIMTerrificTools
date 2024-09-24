@@ -145,7 +145,7 @@ namespace StringSearch
                 {
                     e.Cancel = true;
                     _ok_clicked = false;
-                    TaskDialog.Show("Error", "Cannot search RVT Links and use the Current View option");
+                    Autodesk.Revit.UI.TaskDialog.Show("Error", "Cannot search RVT Links and use the Current View option");
                 }
                 else if (ElementType && (CurrentSelection || CurrentView))
                 {

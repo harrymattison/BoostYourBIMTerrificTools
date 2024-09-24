@@ -41,9 +41,9 @@ namespace SectionBoxFit
             bool errorOffset = !Double.TryParse(txtOffset.Text, out d);
 
             if (errorOffset)
-                TaskDialog.Show("Error", "Offset must be a number.");
+                Autodesk.Revit.UI.TaskDialog.Show("Error", "Offset must be a number.");
             else if (d <= 0)
-                TaskDialog.Show("Error", "Offset must be greater than 0.");
+                Autodesk.Revit.UI.TaskDialog.Show("Error", "Offset must be greater than 0.");
             else
             {
                 this.DialogResult = DialogResult.OK;

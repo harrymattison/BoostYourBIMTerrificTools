@@ -60,7 +60,7 @@ namespace BoostYourBIM
                     }
                     else
                     {
-                        TaskDialog.Show("Error", "No parameters found.");
+                        Autodesk.Revit.UI.TaskDialog.Show("Error", "No parameters found.");
                     }
                 }
 #if !R2013
@@ -359,7 +359,7 @@ namespace BoostYourBIM
         {
             if (lstParam.Items.Count == 0 && tabControl1.SelectedIndex == 0)
             {
-                TaskDialog.Show("Error", "Cannot select a parameter to increment. No element was selected or no parameters exist for the selected element.");
+                Autodesk.Revit.UI.TaskDialog.Show("Error", "Cannot select a parameter to increment. No element was selected or no parameters exist for the selected element.");
                 tabControl1.SelectedIndex = 1;
             }
         }

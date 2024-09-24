@@ -74,7 +74,7 @@ namespace BoostYourBIMTerrificTools.KeyboardShortcutTutor
                 }
                 else
                 {
-                    TaskDialog.Show("No shortcuts file", "Shortcuts file does not exist. Open the Revit Keyboard Shortcut UI and press Export.");
+                    Autodesk.Revit.UI.TaskDialog.Show("No shortcuts file", "Shortcuts file does not exist. Open the Revit Keyboard Shortcut UI and press Export.");
                 }
             }
             this.Close();

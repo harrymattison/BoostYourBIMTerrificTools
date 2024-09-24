@@ -35,12 +35,12 @@ namespace BoostYourBIMTerrificTools.SubcategoryMerge
         {
             if (GetNewCatName() == string.Empty)
             {
-                TaskDialog.Show("Error", "Enter a new category name");
+                Autodesk.Revit.UI.TaskDialog.Show("Error", "Enter a new category name");
                 return;
             }
             if (lstSubcat.SelectedItems.Count < 2)
             {
-                TaskDialog.Show("Error", "Select at least two subcategories");
+                Autodesk.Revit.UI.TaskDialog.Show("Error", "Select at least two subcategories");
                 return;
             }
             DialogResult = DialogResult.OK;

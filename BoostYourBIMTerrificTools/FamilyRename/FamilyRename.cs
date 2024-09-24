@@ -70,7 +70,7 @@ namespace BoostYourBIMTerrificTools.FamilyRename
 
             if (errors.Any())
             {
-                TaskDialog td = new TaskDialog("Errors")
+                Autodesk.Revit.UI.TaskDialog td = new Autodesk.Revit.UI.TaskDialog("Errors")
                 {
                     MainContent = string.Join(Environment.NewLine, errors)
                 };

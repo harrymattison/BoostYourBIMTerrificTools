@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="formProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ImageOMatic\formParameterAnimator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="KeyboardShortcutTutor\FrmHint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="KeyboardShortcutTutor\FrmShortcutList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="LevelDisplacer\FrmLevelDisplacer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="LevelGenerator\AddLevelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="LevelGenerator\FirstLevelNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="LevelGenerator\FormElevation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PaintStripper\FormPaintStripper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ParameterSearch\SearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ParameterSearch\SearchHitNavigator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PinComment\PinCommentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PrintSuppression\FormPrintSuppression.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SectionBoxFit\FrmSectionBoxFit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SelectByType\FormSelectByType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SketchConvert\FormSketchConvert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SubcategoryMerge\FormSubcatMerge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="WallOpeningArea\SearchConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
 using System.Windows.Media.Imaging;
+using System.Windows.Forms;
 
 // catch error after parameter.Set & hit cancel
 
@@ -77,7 +77,7 @@ namespace ImageOMatic
                         }
                         catch (Autodesk.Revit.Exceptions.InvalidOperationException)
                         {
-                            TaskDialog.Show("Error", "Cannot set view display style. If display style is controlled by a View Template, those settings will be used.");
+                            Autodesk.Revit.UI.TaskDialog.Show("Error", "Cannot set view display style. If display style is controlled by a View Template, those settings will be used.");
                         }
                         t.Commit();
                     }
@@ -227,7 +227,7 @@ namespace ImageOMatic
                     }
                     else
                     {
-                        TaskDialog.Show("Error", "Bad selected tab");
+                        Autodesk.Revit.UI.TaskDialog.Show("Error", "Bad selected tab");
                         return Result.Cancelled;
                     }
                     tg.RollBack();
@@ -241,7 +241,7 @@ namespace ImageOMatic
             if (errors.Length > 0)
             {
                 errors = "The following images could not be exported:\n" + errors;
-                TaskDialog.Show("Some Images Failed", errors);
+                Autodesk.Revit.UI.TaskDialog.Show("Some Images Failed", errors);
             }
 
             return Result.Succeeded;
