@@ -1,0 +1,6 @@
+Open a 3D view
+Specify offset increments for X, Y, and Z directions
+Specify if you want to hide elements that cannot be displaced
+Displacement sets are created - one for each level - and each displacement set is translated by the specified increment
+
+Send questions or comments to BoostYourBIM@gmail.com
