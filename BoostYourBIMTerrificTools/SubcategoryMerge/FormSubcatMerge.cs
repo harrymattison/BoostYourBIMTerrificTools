@@ -56,7 +56,7 @@ namespace BoostYourBIMTerrificTools.SubcategoryMerge
         private void lstCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             Category cat = Category.GetCategory(_doc,
-                new ElementId(((Utils.NameIDObject)lstCategory.SelectedItem).IdValue));
+                ElementIdUtils.New(((Utils.NameIDObject)lstCategory.SelectedItem).IdValue));
             List<Utils.NameIDObject> list = cat.SubCategories.Cast<Category>()
                 .OrderBy(q => q.Name)
                 .Select(q => new Utils.NameIDObject(q.Name, ElementIdExtension.GetValue(q.Id)))
@@ -69,7 +69,7 @@ namespace BoostYourBIMTerrificTools.SubcategoryMerge
 
         public ElementId GetCategoryId()
         {
-            return new ElementId(((Utils.NameIDObject)lstCategory.SelectedItem).IdValue);
+            return ElementIdUtils.New(((Utils.NameIDObject)lstCategory.SelectedItem).IdValue);
         }
         
         public List<string> GetSubcatNames()

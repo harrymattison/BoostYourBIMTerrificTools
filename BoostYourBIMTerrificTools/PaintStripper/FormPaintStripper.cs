@@ -37,7 +37,7 @@ namespace BoostYourBIMTerrificTools.PaintStripper
             List<ElementId> ids = new List<ElementId>();
             foreach (Utils.NameIDObject nameIDObject in lstMaterials.SelectedItems.Cast<Utils.NameIDObject>())
             {
-                ids.Add(new ElementId(nameIDObject.IdValue));
+                ids.Add(ElementIdUtils.New(nameIDObject.IdValue));
             }
             return ids;
         }

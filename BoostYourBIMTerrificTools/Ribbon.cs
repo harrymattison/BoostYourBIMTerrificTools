@@ -366,7 +366,7 @@ namespace BoostYourBIMTerrificTools
                 Document doc
                   = uidoc.Document;
 
-                ElementId eid = new ElementId(id);
+                ElementId eid = ElementIdUtils.New(id);
                 Element e = doc.GetElement(eid);
                 if (e != null)
                 {

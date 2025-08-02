@@ -160,7 +160,7 @@ namespace WallOpeningArea
           in wallsOpeningArea)
       {
         Wall wall = doc.GetElement(
-            new ElementId(wallDicEntry.Key)) as Wall;
+            ElementIdUtils.New(wallDicEntry.Key)) as Wall;
         double openingArea = wallDicEntry.Value[0];
         double totalOpeningArea = wallDicEntry.Value[1];
 
