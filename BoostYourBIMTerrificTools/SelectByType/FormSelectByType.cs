@@ -52,14 +52,14 @@ namespace BoostYourBIMTerrificTools.SelectByType
                     .Select(q => new Utils.NameIDObject(q.Name, ElementIdExtension.GetValue(q.Id))).ToList();
 
                 types = types
-                    .Where(q => DoLinesExist(new ElementId(q.IdValue)))
+                    .Where(q => DoLinesExist(ElementIdUtils.New(q.IdValue)))
                     .OrderBy(q => q.Name).ToList();
             }
             else
             {
                 List<ElementType> elementTypes = new FilteredElementCollector(doc)
                     .WhereElementIsElementType()
-                    .OfCategoryId(new ElementId(nameIdCategory.IdValue))
+                    .OfCategoryId(ElementIdUtils.New(nameIdCategory.IdValue))
                     .Cast<ElementType>()
                     .ToList();
 
@@ -125,7 +125,7 @@ namespace BoostYourBIMTerrificTools.SelectByType
                         .ToList();
                 }
                 types = types
-                .Where(q => DoInstancesExist(new ElementId(q.IdValue)))
+                .Where(q => DoInstancesExist(ElementIdUtils.New(q.IdValue)))
                 .OrderBy(q => q.Name).ToList();
             }
             if (txtFilter.Text == "")
@@ -193,7 +193,7 @@ namespace BoostYourBIMTerrificTools.SelectByType
                 }
                 else
                 {
-                    ElementId typeId = new ElementId(nameId.IdValue);
+                    ElementId typeId = ElementIdUtils.New(nameId.IdValue);
                     elements = collector
                         .WhereElementIsNotElementType()
                         .Where(q => q.GetTypeId() == typeId)
