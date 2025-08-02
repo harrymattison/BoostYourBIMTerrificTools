@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="9.9" version="21.2.2" Modules="simple" RootPath="." Language="en" Id="{B011176E-36B7-4862-A1F0-5BAC8C619993}">
-  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
-    <ROW Name="HiddenItems" Value="AppXAppDetailsComponent;FixupComponent;AppXCapabilitiesComponent;AppXDependenciesComponent;AppXProductDetailsComponent;AppXVisualAssetsComponent;AppXAppDeclarationsComponent;AppXUriRulesComponent;MsiXDiffComponent;MsixManifestEditorComponent"/>
-  </COMPONENT>
+<DOCUMENT Type="Advanced Installer" CreateVersion="9.9" version="21.9" Modules="simple" RootPath="." Language="en" Id="{B011176E-36B7-4862-A1F0-5BAC8C619993}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiValidationComponent">
     <ROW Table="File" Column="Sequence" MinValue="1" MaxValue="2147483647" Description="Sequence with respect to the media images; order must track cabinet order." Options="0" ColumnType="3" ColumnIndex="7" ColumnSize="4" MsiKey="File#Sequence"/>
     <ROW Table="Media" Column="LastSequence" MinValue="0" MaxValue="2147483647" Description="File sequence number for the last file for this media." Options="0" ColumnType="3" ColumnIndex="1" ColumnSize="4" MsiKey="Media#LastSequence"/>
@@ -28,28 +25,40 @@
     <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
     <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT60" MultiBuildValue="DefaultBuild:Windows Vista/Server 2008" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT60Display" MultiBuildValue="DefaultBuild:Windows Vista/Server 2008" ValueLocId="-"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="Addins_Dir" Directory_Parent="revit_Dir" DefaultDir="Addins"/>
     <ROW Directory="AppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="AppDat~1|AppDataFolder" IsPseudoRoot="1"/>
+    <ROW Directory="BoostYourBIMTerrificTools_1_Dir" Directory_Parent="__1_Dir" DefaultDir="BOOSTY~1|BoostYourBIMTerrificTools"/>
     <ROW Directory="BoostYourBIMTerrificTools_6_Dir" Directory_Parent="__7_Dir" DefaultDir="BOOSTY~1|BoostYourBIMTerrificTools"/>
     <ROW Directory="BoostYourBIMTerrificTools_7_Dir" Directory_Parent="__8_Dir" DefaultDir="BOOSTY~1|BoostYourBIMTerrificTools"/>
+    <ROW Directory="BoostYourBIMTerrificTools_Dir" Directory_Parent="__Dir" DefaultDir="BOOSTY~1|BoostYourBIMTerrificTools"/>
     <ROW Directory="CommonAppDataFolder" Directory_Parent="TARGETDIR" DefaultDir="Common~1|CommonAppDataFolder" IsPseudoRoot="1"/>
     <ROW Directory="NewFolder_Dir" Directory_Parent="CommonAppDataFolder" DefaultDir="Autode~1|Autodesk"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+    <ROW Directory="__1_Dir" Directory_Parent="Addins_Dir" DefaultDir="2026"/>
     <ROW Directory="__7_Dir" Directory_Parent="Addins_Dir" DefaultDir="2023"/>
     <ROW Directory="__8_Dir" Directory_Parent="Addins_Dir" DefaultDir="2024"/>
+    <ROW Directory="__Dir" Directory_Parent="Addins_Dir" DefaultDir="2025"/>
     <ROW Directory="revit_Dir" Directory_Parent="NewFolder_Dir" DefaultDir="revit"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="APPDIR" ComponentId="{4B15B635-68F0-410D-9663-1436D0807A13}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="BoostYourBIMTerrificTools.addin" ComponentId="{317FA74C-B5AE-4E41-B54C-B063D16F43F5}" Directory_="__Dir" Attributes="0" KeyPath="BoostYourBIMTerrificTools.addin" Type="0"/>
+    <ROW Component="BoostYourBIMTerrificTools.addin_1" ComponentId="{1EF35B0B-AB26-4606-BAD0-1F32F0BD2ECF}" Directory_="__1_Dir" Attributes="0" KeyPath="BoostYourBIMTerrificTools.addin_1" Type="0"/>
     <ROW Component="BoostYourBIMTerrificTools.addin_7" ComponentId="{59B6893D-D1A3-4433-8BF6-8705D71D0C6B}" Directory_="__7_Dir" Attributes="0" KeyPath="BoostYourBIMTerrificTools.addin_7" Type="0"/>
     <ROW Component="BoostYourBIMTerrificTools.addin_8" ComponentId="{B0FC7AB0-DC71-4312-B8C4-F750A208D08A}" Directory_="__8_Dir" Attributes="0" KeyPath="BoostYourBIMTerrificTools.addin_8" Type="0"/>
+    <ROW Component="BoostYourBIMTerrificTools.dll" ComponentId="{CB8958D3-FF05-463B-9BC9-F6271A75EF5F}" Directory_="BoostYourBIMTerrificTools_Dir" Attributes="0" KeyPath="BoostYourBIMTerrificTools.dll"/>
+    <ROW Component="BoostYourBIMTerrificTools.dll_1" ComponentId="{828DB8FA-867E-4972-AE98-2E757C3C45DD}" Directory_="BoostYourBIMTerrificTools_1_Dir" Attributes="0" KeyPath="BoostYourBIMTerrificTools.dll_1"/>
     <ROW Component="BoostYourBIMTerrificTools.dll_7" ComponentId="{829B06D3-75A9-454C-8E01-A1E803347A11}" Directory_="BoostYourBIMTerrificTools_6_Dir" Attributes="0" KeyPath="BoostYourBIMTerrificTools.dll_7"/>
     <ROW Component="BoostYourBIMTerrificTools.dll_8" ComponentId="{9B450379-EEBD-4E9D-88F2-15C6EC0ABC95}" Directory_="BoostYourBIMTerrificTools_7_Dir" Attributes="0" KeyPath="BoostYourBIMTerrificTools.dll_8"/>
+    <ROW Component="EPPlus.dll" ComponentId="{8F40FCE3-029B-434E-8B79-0022A859EA41}" Directory_="BoostYourBIMTerrificTools_Dir" Attributes="0" KeyPath="EPPlus.dll"/>
     <ROW Component="EPPlus.dll_1" ComponentId="{B50449CE-90E2-4CD2-ADDA-13746BAC5C1F}" Directory_="BoostYourBIMTerrificTools_6_Dir" Attributes="0" KeyPath="EPPlus.dll_1"/>
     <ROW Component="EPPlus.dll_2" ComponentId="{CD21DB9B-E810-4B21-B024-3CA1393ABCE9}" Directory_="BoostYourBIMTerrificTools_7_Dir" Attributes="0" KeyPath="EPPlus.dll_2"/>
+    <ROW Component="EPPlus.dll_3" ComponentId="{1AFB410A-AD0B-4665-BD54-423A37C4C499}" Directory_="BoostYourBIMTerrificTools_1_Dir" Attributes="0" KeyPath="EPPlus.dll_3"/>
     <ROW Component="ProductInformation" ComponentId="{33AF353B-E245-44C8-934C-10AD69395E2A}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
@@ -63,6 +72,16 @@
     <ROW File="BoostYourBIMTerrificTools.addin_8" Component_="BoostYourBIMTerrificTools.addin_8" FileName="BOOSTY~1.ADD|BoostYourBIMTerrificTools.addin" Attributes="0" SourcePath="BoostYourBIMTerrificTools.addin" SelfReg="false"/>
     <ROW File="EPPlus.dll_2" Component_="EPPlus.dll_2" FileName="EPPlus.dll" Attributes="0" SourcePath="BoostYourBIMTerrificTools\bin\2023\EPPlus.dll" SelfReg="false"/>
     <ROW File="BoostYourBIMTerrificTools.dll_8" Component_="BoostYourBIMTerrificTools.dll_8" FileName="BOOSTY~1.DLL|BoostYourBIMTerrificTools.dll" Attributes="0" SourcePath="BoostYourBIMTerrificTools\bin\2023\BoostYourBIMTerrificTools.dll" SelfReg="false"/>
+    <ROW File="BoostYourBIMTerrificTools.addin" Component_="BoostYourBIMTerrificTools.addin" FileName="BOOSTY~1.ADD|BoostYourBIMTerrificTools.addin" Attributes="0" SourcePath="BoostYourBIMTerrificTools.addin" SelfReg="false"/>
+    <ROW File="EPPlus.dll" Component_="EPPlus.dll" FileName="EPPlus.dll" Attributes="0" SourcePath="BoostYourBIMTerrificTools\bin\2025\EPPlus.dll" SelfReg="false"/>
+    <ROW File="BoostYourBIMTerrificTools.dll" Component_="BoostYourBIMTerrificTools.dll" FileName="BOOSTY~1.DLL|BoostYourBIMTerrificTools.dll" Attributes="0" SourcePath="BoostYourBIMTerrificTools\bin\2025\BoostYourBIMTerrificTools.dll" SelfReg="false"/>
+    <ROW File="BoostYourBIMTerrificTools.addin_1" Component_="BoostYourBIMTerrificTools.addin_1" FileName="BOOSTY~1.ADD|BoostYourBIMTerrificTools.addin" Attributes="0" SourcePath="BoostYourBIMTerrificTools.addin" SelfReg="false"/>
+    <ROW File="EPPlus.dll_3" Component_="EPPlus.dll_3" FileName="EPPlus.dll" Attributes="0" SourcePath="BoostYourBIMTerrificTools\bin\2026\EPPlus.dll" SelfReg="false"/>
+    <ROW File="BoostYourBIMTerrificTools.dll_1" Component_="BoostYourBIMTerrificTools.dll_1" FileName="BOOSTY~1.DLL|BoostYourBIMTerrificTools.dll" Attributes="0" SourcePath="BoostYourBIMTerrificTools\bin\2026\BoostYourBIMTerrificTools.dll" SelfReg="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrapperUISequenceComponent">
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="249"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="251"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en" InstallationType="4" UseLargeSchema="true"/>
@@ -85,8 +104,14 @@
     <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
     <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
   </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiActionTextComponent">
+    <ROW Action="AI_DeleteLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_DeleteRLzma" Description="Deleting files extracted from archive" DescriptionLocId="ActionText.Description.AI_DeleteLzma" TemplateLocId="-"/>
+    <ROW Action="AI_ExtractLzma" Description="Extracting files from archive" DescriptionLocId="ActionText.Description.AI_ExtractLzma" TemplateLocId="-"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
     <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="lzmaextractor.dll" SourcePath="&lt;AI_CUSTACTS&gt;lzmaextractor.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
     <ROW Dialog_="WelcomeDlg" Control="WelcomeDlgDialogInitializer" Type="DialogInitializer" X="0" Y="0" Width="0" Height="0" Attributes="0" Order="-1" TextLocId="-" HelpLocId="-" ExtDataLocId="-"/>
@@ -124,12 +149,21 @@
     <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH_ORIGINAL" Target="[AI_SETUPEXEPATH]"/>
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DeleteCadLzma" Type="51" Source="AI_DeleteLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteLzma" Type="1025" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
+    <ROW Action="AI_DeleteRCadLzma" Type="51" Source="AI_DeleteRLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_DeleteRLzma" Type="1281" Source="lzmaextractor.dll" Target="DeleteLZMAFiles"/>
     <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
     <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_ExtractCadLzma" Type="51" Source="AI_ExtractLzma" Target="[AI_SETUPEXEPATH]"/>
+    <ROW Action="AI_ExtractLzma" Type="1025" Source="lzmaextractor.dll" Target="ExtractLZMAFiles"/>
+    <ROW Action="AI_FindExeLzma" Type="1" Source="lzmaextractor.dll" Target="FindEXE"/>
     <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
     <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Type="65" Source="aicustact.dll" Target="PreserveInstallType"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Type="51" Source="AI_SETUPEXEPATH" Target="[AI_SETUPEXEPATH_ORIGINAL]"/>
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_SETMIXINSTLOCATION" Type="1" Source="aicustact.dll" Target="MixedAllUsersInstallLocation"/>
@@ -148,6 +182,12 @@
     <ROW Feature_="MainFeature" Component_="BoostYourBIMTerrificTools.addin_8"/>
     <ROW Feature_="MainFeature" Component_="EPPlus.dll_2"/>
     <ROW Feature_="MainFeature" Component_="BoostYourBIMTerrificTools.dll_8"/>
+    <ROW Feature_="MainFeature" Component_="BoostYourBIMTerrificTools.addin"/>
+    <ROW Feature_="MainFeature" Component_="EPPlus.dll"/>
+    <ROW Feature_="MainFeature" Component_="BoostYourBIMTerrificTools.dll"/>
+    <ROW Feature_="MainFeature" Component_="BoostYourBIMTerrificTools.addin_1"/>
+    <ROW Feature_="MainFeature" Component_="EPPlus.dll_3"/>
+    <ROW Feature_="MainFeature" Component_="BoostYourBIMTerrificTools.dll_1"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -157,6 +197,15 @@
     <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
     <ROW Action="AI_SETMIXINSTLOCATION" Sequence="748"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99" Builds="DefaultBuild"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="199" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="198" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractCadLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="197" Builds="DefaultBuild"/>
+    <ROW Action="AI_FindExeLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="196" Builds="DefaultBuild"/>
+    <ROW Action="AI_ExtractLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1549" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteRLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="1548" Builds="DefaultBuild"/>
+    <ROW Action="AI_DeleteLzma" Condition="SETUPEXEDIR=&quot;&quot; AND Installed AND (REMOVE&lt;&gt;&quot;ALL&quot;) AND (AI_INSTALL_MODE&lt;&gt;&quot;Remove&quot;) AND (NOT PATCH)" Sequence="6599" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
@@ -165,11 +214,14 @@
     <ROW Action="AI_DpiContentScale" Sequence="52"/>
     <ROW Action="AI_EnableDebugLog" Sequence="51"/>
     <ROW Action="AI_PRESERVE_INSTALL_TYPE" Sequence="199"/>
+    <ROW Action="AI_BACKUP_AI_SETUPEXEPATH" Sequence="99"/>
+    <ROW Action="AI_RESTORE_AI_SETUPEXEPATH" Condition="AI_SETUPEXEPATH_ORIGINAL" Sequence="101"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNT40Display]" DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 600)" Description="[ProductName] cannot be installed on [WindowsTypeNT60Display]." DescriptionLocId="AI.LaunchCondition.NoNT60" IsPredefined="true" Builds="DefaultBuild"/>
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
