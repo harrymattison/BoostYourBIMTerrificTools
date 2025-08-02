@@ -24,7 +24,7 @@ namespace BoostYourBIMTerrificTools
 
             IList<XYZ> points = new List<XYZ>();
 
-            IList<Tuple<int, double, double, double>> curvePoints = new List<Tuple<int, double, double, double>>();
+            IList<Tuple<long, double, double, double>> curvePoints = new List<Tuple<long, double, double, double>>();
 
             IList<Reference> refList = null;
 
@@ -62,12 +62,12 @@ namespace BoostYourBIMTerrificTools
                         }
                         catch
                         {
-                            if (!errors.Contains(mc.Id.IntegerValue.ToString()))
-                                errors.Add(mc.Id.IntegerValue.ToString());
+                            if (!errors.Contains(ElementIdExtension.GetValue(mc.Id).ToString()))
+                                errors.Add(ElementIdExtension.GetValue(mc.Id).ToString());
                         }
                         if (p != null)
                         {
-                            curvePoints.Add(new Tuple<int, double, double, double>(mc.Id.IntegerValue, p.X, p.Y, p.Z));
+                            curvePoints.Add(new Tuple<long, double, double, double>(ElementIdExtension.GetValue(mc.Id), p.X, p.Y, p.Z));
                             points.Add(p);
                         }
                     }
@@ -99,12 +99,12 @@ namespace BoostYourBIMTerrificTools
                                     }
                                     catch
                                     {
-                                        if (!errors.Contains(e.Id.IntegerValue.ToString()))
-                                            errors.Add(e.Id.IntegerValue.ToString());
+                                        if (!errors.Contains(ElementIdExtension.GetValue(e.Id).ToString()))
+                                            errors.Add(ElementIdExtension.GetValue(e.Id).ToString());
                                     }
                                     if (p != null)
                                     {
-                                        curvePoints.Add(new Tuple<int, double, double, double>(e.Id.IntegerValue, p.X, p.Y, p.Z));
+                                        curvePoints.Add(new Tuple<long, double, double, double>(ElementIdExtension.GetValue(e.Id), p.X, p.Y, p.Z));
                                         points.Add(p);
                                     }
                                 }
@@ -122,12 +122,12 @@ namespace BoostYourBIMTerrificTools
                                     }
                                     catch
                                     {
-                                        if (!errors.Contains(e.Id.IntegerValue.ToString()))
-                                            errors.Add(e.Id.IntegerValue.ToString());
+                                        if (!errors.Contains(ElementIdExtension.GetValue(e.Id).ToString()))
+                                            errors.Add(ElementIdExtension.GetValue(e.Id).ToString());
                                     }
                                     if (p != null)
                                     {
-                                        curvePoints.Add(new Tuple<int, double, double, double>(e.Id.IntegerValue, p.X, p.Y, p.Z));
+                                        curvePoints.Add(new Tuple<long, double, double, double>(ElementIdExtension.GetValue(e.Id), p.X, p.Y, p.Z));
                                         points.Add(p);
                                     }
                                 }
@@ -159,9 +159,9 @@ namespace BoostYourBIMTerrificTools
                     return Result.Cancelled;
                 }
 
-                using (StreamWriter sw = new StreamWriter(Path.Combine(Path.GetTempPath(), "Topo" + surface.Id.IntegerValue + ".txt"), false))
+                using (StreamWriter sw = new StreamWriter(Path.Combine(Path.GetTempPath(), "Topo" + ElementIdExtension.GetValue(surface.Id) + ".txt"), false))
                 {
-                    foreach (Tuple<int, double, double, double> tup in curvePoints)
+                    foreach (Tuple<long, double, double, double> tup in curvePoints)
                     {
                         sw.WriteLine(Math.Round((double)tup.Item1, 5) + "~" + Math.Round((double)tup.Item2, 5) + "~" + Math.Round((double)tup.Item3, 5) + "~" + Math.Round((double)tup.Item4, 5));
                     }
@@ -188,7 +188,7 @@ namespace BoostYourBIMTerrificTools
         {
             public bool AllowElement(Element e)
             {
-                if (e.Category.Id.IntegerValue == (int)BuiltInCategory.OST_Lines)
+                if (ElementIdExtension.GetValue(e.Category.Id) == (int)BuiltInCategory.OST_Lines)
                     return true;
 
                 if (e is ImportInstance)
@@ -240,9 +240,9 @@ namespace BoostYourBIMTerrificTools
             IList<Element> topos = new FilteredElementCollector(doc).OfClass(typeof(TopographySurface)).ToList();
 
             IList<XYZ> delete = new List<XYZ>();
-            IList<Tuple<int, double, double, double>> curvePoints = new List<Tuple<int, double, double, double>>();
+            IList<Tuple<long, double, double, double>> curvePoints = new List<Tuple<long, double, double, double>>();
 
-            string file = Path.Combine(Path.GetTempPath(), "Topo" + topo.Id.IntegerValue + ".txt");
+            string file = Path.Combine(Path.GetTempPath(), "Topo" + ElementIdExtension.GetValue(topo.Id) + ".txt");
             if (File.Exists(file))
             {
 
@@ -260,7 +260,7 @@ namespace BoostYourBIMTerrificTools
                         if (words.Length != 4)
                             continue;
 
-                        if (mc.Id.IntegerValue.ToString() == words[0])
+                        if (ElementIdExtension.GetValue(mc.Id).ToString() == words[0])
                         {
                             XYZ ptFromFile = new XYZ(Convert.ToDouble(words[1]), Convert.ToDouble(words[2]), Convert.ToDouble(words[3]));
                             foreach (XYZ ptFromTopo in topo.GetPoints())
@@ -288,7 +288,7 @@ namespace BoostYourBIMTerrificTools
                 }
                 if (p != null)
                 {
-                    curvePoints.Add(new Tuple<int, double, double, double>(mc.Id.IntegerValue, p.X, p.Y, p.Z));
+                    curvePoints.Add(new Tuple<long, double, double, double>(ElementIdExtension.GetValue(mc.Id), p.X, p.Y, p.Z));
                     points.Add(p);
                 }
             }
@@ -314,9 +314,9 @@ namespace BoostYourBIMTerrificTools
                 tes.Commit(new iFailuresPreprocessor());
             }
 
-            using (StreamWriter sw = new StreamWriter(Path.Combine(Path.GetTempPath(), "Topo" + topo.Id.IntegerValue + ".txt"), true))
+            using (StreamWriter sw = new StreamWriter(Path.Combine(Path.GetTempPath(), "Topo" + ElementIdExtension.GetValue(topo.Id) + ".txt"), true))
             {
-                foreach (Tuple<int, double, double, double> tup in curvePoints)
+                foreach (Tuple<long, double, double, double> tup in curvePoints)
                 {
                     sw.WriteLine(Math.Round((double)tup.Item1, 5) + "~" + Math.Round((double)tup.Item2, 5) + "~" + Math.Round((double)tup.Item3, 5) + "~" + Math.Round((double)tup.Item4, 5));
                 }

@@ -26,7 +26,7 @@ namespace BoostYourBIMTerrificTools.PrintSuppression
                 List<Category> catsAndSubcats = Utils.GetCatsAndSubCats(doc);
                 foreach (string s in Properties.Settings.Default.PrintSuppression)
                 {
-                    Category cat = catsAndSubcats.FirstOrDefault(q => q.Id.IntegerValue == int.Parse(s));
+                    Category cat = catsAndSubcats.FirstOrDefault(q => ElementIdExtension.GetValue(q.Id) == int.Parse(s));
                     if (cat == null)
                         continue;
 

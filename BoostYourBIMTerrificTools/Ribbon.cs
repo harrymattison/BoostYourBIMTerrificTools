@@ -296,7 +296,7 @@ namespace BoostYourBIMTerrificTools
             return Result.Succeeded;
         }
         static JtWindowHandle _hWndRevit = null;
-        static int _pending_element_id;
+        static long _pending_element_id;
         static bool _subscribing = false;
         static UIControlledApplication _a;
 
@@ -321,7 +321,7 @@ namespace BoostYourBIMTerrificTools
                 _subscribing = false;
             }
         }
-        public delegate void SetElementId(int id);
+        public delegate void SetElementId(long id);
         public static void ShowForm(
   SortableBindingList<SearchHit> data)
         {
@@ -332,7 +332,7 @@ namespace BoostYourBIMTerrificTools
             Subscribe();
         }
 
-        static void SetPendingElementId(int id)
+        static void SetPendingElementId(long id)
         {
             _pending_element_id = id;
         }
@@ -346,7 +346,7 @@ namespace BoostYourBIMTerrificTools
                 Unsubscribe();
             }
 
-            int id = _pending_element_id;
+            long id = _pending_element_id;
 
             if (0 != id)
             {

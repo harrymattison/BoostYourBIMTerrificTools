@@ -22,7 +22,7 @@ namespace BoostYourBIMTerrificTools.PaintStripper
             List<Utils.NameIDObject> list = new FilteredElementCollector(doc)
                 .OfClass(typeof(Material))
                 .OrderBy(q => q.Name)
-                .Select(q => new Utils.NameIDObject(q.Name, q.Id.IntegerValue))
+                .Select(q => new Utils.NameIDObject(q.Name, ElementIdExtension.GetValue(q.Id)))
                 .ToList();
 
             lstMaterials.DataSource = list;

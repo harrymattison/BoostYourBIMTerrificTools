@@ -102,13 +102,13 @@ namespace BoostYourBIMTerrificTools.SubcategoryMerge
                     var curves = new FilteredElementCollector(famDoc)
                         .OfClass(typeof(CurveElement))
                         .Cast<CurveElement>().ToList();
-                    var lineStyles = curves.Select(q => q.LineStyle.Id.IntegerValue).ToList();
+                    var lineStyles = curves.Select(q => ElementIdExtension.GetValue(q.LineStyle.Id)).ToList();
                     var cutStyle = catToMerge.GetGraphicsStyle(GraphicsStyleType.Cut);
                     if (cutStyle != null)
                     {
-                        var cutId = cutStyle.Id.IntegerValue;
+                        var cutId = ElementIdExtension.GetValue(cutStyle.Id);
                         var linesCut = curves
-                            .Where(q => q.LineStyle.Id.IntegerValue == cutId)
+                            .Where(q => ElementIdExtension.GetValue(q.LineStyle.Id) == cutId)
                             .ToList();
                         foreach (var e in linesCut)
                         {
@@ -126,8 +126,8 @@ namespace BoostYourBIMTerrificTools.SubcategoryMerge
                             }
                         }
                     }
-                    var projectionId = catToMerge.GetGraphicsStyle(GraphicsStyleType.Projection).Id.IntegerValue;
-                    var linesProjection = curves.Where(q => q.LineStyle.Id.IntegerValue == projectionId)
+                    var projectionId = ElementIdExtension.GetValue(catToMerge.GetGraphicsStyle(GraphicsStyleType.Projection).Id);
+                    var linesProjection = curves.Where(q => ElementIdExtension.GetValue(q.LineStyle.Id) == projectionId)
                         .ToList();
                     foreach (var e in elements)
                     {

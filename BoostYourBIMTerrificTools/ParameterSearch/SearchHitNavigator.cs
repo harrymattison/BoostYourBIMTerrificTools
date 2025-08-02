@@ -126,7 +126,7 @@ namespace StringSearch
 
       if( rowIndex > -1 )
       {
-        _set_id( getIdForRow(dataGridView1.Rows[rowIndex]).IntegerValue);
+        _set_id(ElementIdExtension.GetValue(getIdForRow(dataGridView1.Rows[rowIndex])));
       }
     }
 

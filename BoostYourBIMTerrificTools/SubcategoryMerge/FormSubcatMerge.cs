@@ -23,7 +23,7 @@ namespace BoostYourBIMTerrificTools.SubcategoryMerge
             List<Utils.NameIDObject> list = doc.Settings.Categories.Cast<Category>()
                 .Where(q => q.SubCategories.Size > 1)
                 .OrderBy(q => q.Name)
-                .Select(q => new Utils.NameIDObject(q.Name, q.Id.IntegerValue))
+                .Select(q => new Utils.NameIDObject(q.Name, ElementIdExtension.GetValue(q.Id)))
                 .ToList();
 
             lstCategory.DataSource = list;
@@ -59,7 +59,7 @@ namespace BoostYourBIMTerrificTools.SubcategoryMerge
                 new ElementId(((Utils.NameIDObject)lstCategory.SelectedItem).IdValue));
             List<Utils.NameIDObject> list = cat.SubCategories.Cast<Category>()
                 .OrderBy(q => q.Name)
-                .Select(q => new Utils.NameIDObject(q.Name, q.Id.IntegerValue))
+                .Select(q => new Utils.NameIDObject(q.Name, ElementIdExtension.GetValue(q.Id)))
                 .ToList();
 
             lstSubcat.DataSource = list;

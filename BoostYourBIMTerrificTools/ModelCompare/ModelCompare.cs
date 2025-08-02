@@ -86,7 +86,7 @@ namespace BoostYourBIMTerrificTools.ModelCompare
                     if (p.StorageType == StorageType.Double)
                         val = p.AsValueString();
                     else if (p.StorageType == StorageType.ElementId)
-                        val = p.AsElementId().IntegerValue.ToString();
+                        val = ElementIdExtension.GetValue(p.AsElementId()).ToString();
                     else if (p.StorageType == StorageType.Integer)
                         val = p.AsInteger().ToString();
                     else if (p.StorageType == StorageType.String)
@@ -124,7 +124,7 @@ namespace BoostYourBIMTerrificTools.ModelCompare
                 elementDatas.Add(new ElementData
                 {
                     CategoryName = e.Category.Name,
-                    ElementId = e.Id.IntegerValue,
+                    ElementId = ElementIdExtension.GetValue(e.Id),
                     UniqueId = e.UniqueId,
                     Locations = locations.OrderBy(q => new XYZ(q.X, q.Y, q.Z).DistanceTo(XYZ.Zero)).ToList(),
                     ParameterData = parameterDatas
@@ -188,7 +188,7 @@ namespace BoostYourBIMTerrificTools.ModelCompare
         {
             public string UniqueId { get; set; }
             public string CategoryName { get; set; }
-            public int ElementId { get; set; }
+            public long ElementId { get; set; }
             public List<XYZSerializable> Locations { get; set; }
             public List<ParameterData> ParameterData { get; set; }
         }

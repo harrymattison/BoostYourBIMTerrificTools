@@ -74,7 +74,7 @@ namespace BoostYourBIMTerrificTools.RoomAreaBoundaries
                         var viewPlan = GetViewPlan(doc);
                         if (viewPlan == null) return Result.Cancelled;
 
-                        if (modelCurve.Category.Id.IntegerValue == (int)BuiltInCategory.OST_AreaSchemeLines)
+                        if (ElementIdExtension.GetValue(modelCurve.Category.Id) == (int)BuiltInCategory.OST_AreaSchemeLines)
                         {
                             MakeRoomBoundaryLine(modelCurve.GeometryCurve, viewPlan);
                         }

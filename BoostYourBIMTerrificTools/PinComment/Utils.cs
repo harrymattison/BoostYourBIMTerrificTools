@@ -48,7 +48,7 @@ namespace BoostYourBIMTerrificTools.PinComment
 #endif
                             if (p == null)
                             {
-                                TaskDialog.Show("Error", PinParameterName + " does not exist for element " + e.Name + " " + e.Id.IntegerValue);
+                                TaskDialog.Show("Error", PinParameterName + " does not exist for element " + e.Name + " " + ElementIdExtension.GetValue(e.Id));
                                 return;
                             }
                             p.Set(app.Application.Username + "|" + text);
@@ -100,7 +100,7 @@ namespace BoostYourBIMTerrificTools.PinComment
                         continue;
 
                     string[] ar = p.AsString().Split('|');
-                    comments.Add(element.Category.Name + "  " + element.Name + "(id = " + element.Id.IntegerValue + ") was pinned by " + ar[0] + " because: " + ar[1]);
+                    comments.Add(element.Category.Name + "  " + element.Name + "(id = " + ElementIdExtension.GetValue(element.Id) + ") was pinned by " + ar[0] + " because: " + ar[1]);
                 }
                 if (comments.Any())
                 {

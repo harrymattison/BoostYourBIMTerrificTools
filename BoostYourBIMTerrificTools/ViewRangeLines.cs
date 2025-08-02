@@ -62,16 +62,16 @@ namespace BoostYourBIMTerrificTools
 			XYZ min = bbox.Min;
 			XYZ max = bbox.Max;
 
-			Category bottomClipLineStyle = doc.Settings.Categories.Cast<Category>().FirstOrDefault(q => q.Id.IntegerValue == (int)BuiltInCategory.OST_Lines)
+			Category bottomClipLineStyle = doc.Settings.Categories.Cast<Category>().FirstOrDefault(q => ElementIdExtension.GetValue(q.Id) == (int)BuiltInCategory.OST_Lines)
 				.SubCategories.Cast<Category>().FirstOrDefault(q => q.Name.Contains(Utils.BOTTOM_CLIP_PLANE));
 
-			Category topClipLineStyle = doc.Settings.Categories.Cast<Category>().FirstOrDefault(q => q.Id.IntegerValue == (int)BuiltInCategory.OST_Lines)
+			Category topClipLineStyle = doc.Settings.Categories.Cast<Category>().FirstOrDefault(q => ElementIdExtension.GetValue(q.Id) == (int)BuiltInCategory.OST_Lines)
 				.SubCategories.Cast<Category>().FirstOrDefault(q => q.Name.Contains(Utils.TOP_CLIP_PLANE));
 
-			Category viewDepthLineStyle = doc.Settings.Categories.Cast<Category>().FirstOrDefault(q => q.Id.IntegerValue == (int)BuiltInCategory.OST_Lines)
+			Category viewDepthLineStyle = doc.Settings.Categories.Cast<Category>().FirstOrDefault(q => ElementIdExtension.GetValue(q.Id) == (int)BuiltInCategory.OST_Lines)
 				.SubCategories.Cast<Category>().FirstOrDefault(q => q.Name.Contains(Utils.VIEW_DEPTH));
 
-			Category cutPlaneLineStyle = doc.Settings.Categories.Cast<Category>().FirstOrDefault(q => q.Id.IntegerValue == (int)BuiltInCategory.OST_Lines)
+			Category cutPlaneLineStyle = doc.Settings.Categories.Cast<Category>().FirstOrDefault(q => ElementIdExtension.GetValue(q.Id) == (int)BuiltInCategory.OST_Lines)
 					.SubCategories.Cast<Category>().FirstOrDefault(q => q.Name.Contains(Utils.CUT_PLANE));
 
 			Level planLevel = viewPlan.GenLevel;

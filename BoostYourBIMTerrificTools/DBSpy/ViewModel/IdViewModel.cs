@@ -5,13 +5,13 @@ namespace BoostYourBIMTerrificTools.DBSpy
     public class IdViewModel : TreeViewItemViewModel
     {
 
-        public int IdInt { get; }
+        public long IdInt { get; }
         public string CategoryName { get; }
         public string Name { get; }
         public IdViewModel(Autodesk.Revit.DB.ElementId id, TreeViewItemViewModel parent)
             : base(parent, false)
         {
-            IdInt = id.IntegerValue;
+            IdInt = ElementIdExtension.GetValue(id);
             if (IdInt == -1)
             {
                 Name = "<None>";

@@ -1,10 +1,11 @@
 ﻿
+using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
+using BoostYourBIMTerrificTools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
 
 namespace WallOpeningArea
 {
@@ -14,7 +15,7 @@ namespace WallOpeningArea
     // Array of doubles
     // [0] PARAMETER_SMALL_OPEN_NAME
     // [1] PARAMETER_TOTAL_OPEN_NAME
-    private static Dictionary<int, double[]> wallsOpeningArea;
+    private static Dictionary<long, double[]> wallsOpeningArea;
 
     public static void CalculateWallOpeningAreas(UIDocument uidoc,
         double minOpeningValue)
@@ -29,7 +30,7 @@ namespace WallOpeningArea
       transSearch.Start("Wall Opening Search");
 
       // Create/Reset dictionary of values
-      wallsOpeningArea = new Dictionary<int, double[]>();
+      wallsOpeningArea = new Dictionary<long, double[]>();
 
       // First calculate opening element openings
       OpeningElementOpenings(doc, minOpeningValue);
@@ -88,15 +89,15 @@ namespace WallOpeningArea
 
             // Store the value for later...
             // If already there, just increase the are
-            if (wallsOpeningArea.ContainsKey(wall.Id.IntegerValue))
+            if (wallsOpeningArea.ContainsKey(ElementIdExtension.GetValue(wall.Id)))
             {
-                wallsOpeningArea[wall.Id.IntegerValue][0] +=
+                wallsOpeningArea[ElementIdExtension.GetValue(wall.Id)][0] +=
                   wallOpeningArea;
-                wallsOpeningArea[wall.Id.IntegerValue][1] +=
+                wallsOpeningArea[ElementIdExtension.GetValue(wall.Id)][1] +=
                   wallTotalOpeningArea;
             }
             else //not there yet, add a new key/value
-                wallsOpeningArea.Add(wall.Id.IntegerValue,
+                wallsOpeningArea.Add(ElementIdExtension.GetValue(wall.Id),
                     new double[] { wallOpeningArea, wallTotalOpeningArea });
         }
     }
@@ -155,7 +156,7 @@ namespace WallOpeningArea
         return; //something went wrong...
       }
 
-      foreach (KeyValuePair<int, double[]> wallDicEntry
+      foreach (KeyValuePair<long, double[]> wallDicEntry
           in wallsOpeningArea)
       {
         Wall wall = doc.GetElement(
@@ -395,17 +396,17 @@ namespace WallOpeningArea
     {
       // Already there, just increase the are
       if (wallsOpeningArea.ContainsKey(
-          wallId.IntegerValue))
+          ElementIdExtension.GetValue(wallId)))
       {
         if (openingArea > 0) //only if is needed...
-          wallsOpeningArea[wallId.IntegerValue][0]
+          wallsOpeningArea[ElementIdExtension.GetValue(wallId)][0]
             += openingArea;
         if (totalOpeningArea > 0) //only if is needed...
-          wallsOpeningArea[wallId.IntegerValue][1]
+          wallsOpeningArea[ElementIdExtension.GetValue(wallId)][1]
             += totalOpeningArea;
       }
       else // Not there yet, add a new key/value
-        wallsOpeningArea.Add(wallId.IntegerValue,
+        wallsOpeningArea.Add(ElementIdExtension.GetValue(wallId),
             new double[] { openingArea, totalOpeningArea });
     }
 
@@ -442,8 +443,8 @@ namespace WallOpeningArea
       // then the loop is a 'full' profile opening
       bool loopIsOpen =
           (closestReference == null ||
-          closestElement.Id.IntegerValue !=
-          wall.Id.IntegerValue);
+          ElementIdExtension.GetValue(closestElement.Id) !=
+          ElementIdExtension.GetValue(wall.Id));
 
       return loopIsOpen;
     }

@@ -179,13 +179,13 @@ namespace BoostYourBIMTerrificTools
         }
         public class NameIDObject
         {
-            public NameIDObject(string name, int idValue)
+            public NameIDObject(string name, long idValue)
             {
                 Name = name;
                 IdValue = idValue;
             }
             public string Name { get; set; }
-            public int IdValue { get; set; }
+            public long IdValue { get; set; }
         }
 
         public static Level GetViewRangeLevel(Document doc, ElementId id, Level levelBelow)
@@ -193,7 +193,7 @@ namespace BoostYourBIMTerrificTools
             if (id == ElementId.InvalidElementId)
                 return null;
 
-            if (id.IntegerValue == -4)
+            if (ElementIdExtension.GetValue(id) == -4)
                 return levelBelow;
 
             return doc.GetElement(id) as Level;
@@ -307,7 +307,7 @@ namespace BoostYourBIMTerrificTools
                 if (e.Category == null)
                     return false;
 
-                if (e.Category.Id.IntegerValue == (int)bic)
+                if (ElementIdExtension.GetValue(e.Category.Id) == (int)bic)
                     return true;
 
                 return false;

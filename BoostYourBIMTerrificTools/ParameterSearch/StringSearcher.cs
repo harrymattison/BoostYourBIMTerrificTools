@@ -1,10 +1,11 @@
 ﻿#region Namespaces
+using Autodesk.Revit.DB;
+using BoostYourBIMTerrificTools;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Autodesk.Revit.DB;
 #endregion // Namespaces
 
 namespace StringSearch
@@ -85,7 +86,7 @@ namespace StringSearch
                     //  "expected string raw value to match value string" );
                     break;
                 case StorageType.ElementId:
-                    s = p.AsElementId().IntegerValue.ToString();
+                    s = ElementIdExtension.GetValue(p.AsElementId()).ToString();
                     //Debug.Assert( s.Equals( p.AsValueString() ), 
                     //  "expected element id representation to match value string" );
                     break;

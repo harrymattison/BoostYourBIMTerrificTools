@@ -37,7 +37,7 @@ namespace BoostYourBIMTerrificTools.DBSpy
             {
 
             }
-            return FamilyName + e.Name + " - " + e.Id.IntegerValue;
+            return FamilyName + e.Name + " - " + ElementIdExtension.GetValue(e.Id);
         }
 
     }

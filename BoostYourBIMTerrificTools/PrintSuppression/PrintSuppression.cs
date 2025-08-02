@@ -28,7 +28,7 @@ namespace BoostYourBIMTerrificTools.PrintSuppression
             }
           
             StringCollection stringCollection = new StringCollection();
-            stringCollection.AddRange(Utils.catIds.Select(q => q.IntegerValue.ToString()).ToArray());
+            stringCollection.AddRange(Utils.catIds.Select(q => ElementIdExtension.GetValue(q).ToString()).ToArray());
             Properties.Settings.Default.PrintSuppression = stringCollection;
             Properties.Settings.Default.Save();
 

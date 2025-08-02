@@ -49,7 +49,7 @@ namespace BoostYourBIMTerrificTools.SelectByType
                     .get_Item(BuiltInCategory.OST_Lines)
                     .SubCategories.Cast<Category>()
                     .OrderBy(q => q.Name)
-                    .Select(q => new Utils.NameIDObject(q.Name, q.Id.IntegerValue)).ToList();
+                    .Select(q => new Utils.NameIDObject(q.Name, ElementIdExtension.GetValue(q.Id))).ToList();
 
                 types = types
                     .Where(q => DoLinesExist(new ElementId(q.IdValue)))
@@ -79,49 +79,49 @@ namespace BoostYourBIMTerrificTools.SelectByType
                 if (elementTypes.First() is FamilySymbol)
                 {
                     types = elementTypes.Cast<FamilySymbol>()
-                        .Select(q => new Utils.NameIDObject(q.FamilyName + ": " + q.Name, q.Id.IntegerValue))
+                        .Select(q => new Utils.NameIDObject(q.FamilyName + ": " + q.Name, ElementIdExtension.GetValue(q.Id)))
                         .ToList();
                 }
                 else if (elementTypes.First() is StairsType)
                 {
                     types = elementTypes.Cast<StairsType>()
-                        .Select(q => new Utils.NameIDObject(q.ConstructionMethod + ": " + q.Name, q.Id.IntegerValue))
+                        .Select(q => new Utils.NameIDObject(q.ConstructionMethod + ": " + q.Name, ElementIdExtension.GetValue(q.Id)))
                         .ToList();
                 }
                 else if (elementTypes.First() is ConduitType)
                 {
                     types = elementTypes.Cast<ConduitType>()
                         .Where(q => q.IsWithFitting)
-                        .Select(q => new Utils.NameIDObject("Conduit with Fittings: " + q.Name, q.Id.IntegerValue))
+                        .Select(q => new Utils.NameIDObject("Conduit with Fittings: " + q.Name, ElementIdExtension.GetValue(q.Id)))
                         .ToList();
                     types.AddRange(elementTypes.Cast<ConduitType>()
                         .Where(q => !q.IsWithFitting)
-                        .Select(q => new Utils.NameIDObject("Conduit without Fittings: " + q.Name, q.Id.IntegerValue))
+                        .Select(q => new Utils.NameIDObject("Conduit without Fittings: " + q.Name, ElementIdExtension.GetValue(q.Id)))
                         .ToList());
                 }
                 else if (elementTypes.First() is CableTrayType)
                 {
                     types = elementTypes.Cast<CableTrayType>()
                         .Where(q => q.IsWithFitting)
-                        .Select(q => new Utils.NameIDObject("Cable Tray with Fittings: " + q.Name, q.Id.IntegerValue))
+                        .Select(q => new Utils.NameIDObject("Cable Tray with Fittings: " + q.Name, ElementIdExtension.GetValue(q.Id)))
                         .ToList();
                     types.AddRange(elementTypes.Cast<CableTrayType>()
                         .Where(q => !q.IsWithFitting)
-                        .Select(q => new Utils.NameIDObject("Cable Tray without Fittings: " + q.Name, q.Id.IntegerValue))
+                        .Select(q => new Utils.NameIDObject("Cable Tray without Fittings: " + q.Name, ElementIdExtension.GetValue(q.Id)))
                         .ToList());
                 }
 #if !RELEASE2015 && !RELEASE2016 && !RELEASE2017 && !RELEASE2018
                 else if (elementTypes.First() is MEPCurveType)
                 {
                     types = elementTypes.Cast<MEPCurveType>()
-                        .Select(q => new Utils.NameIDObject(q.Shape + ": " + q.Name, q.Id.IntegerValue))
+                        .Select(q => new Utils.NameIDObject(q.Shape + ": " + q.Name, ElementIdExtension.GetValue(q.Id)))
                         .ToList();
                 }
 #endif
                 else
                 {
                     types = elementTypes
-                        .Select(q => new Utils.NameIDObject(q.Name, q.Id.IntegerValue))
+                        .Select(q => new Utils.NameIDObject(q.Name, ElementIdExtension.GetValue(q.Id)))
                         .ToList();
                 }
                 types = types
@@ -187,7 +187,7 @@ namespace BoostYourBIMTerrificTools.SelectByType
                     elements = collector
                         .OfClass(typeof(CurveElement))
                         .Cast<CurveElement>()
-                        .Where(q => ((GraphicsStyle)q.LineStyle).GraphicsStyleCategory.Id.IntegerValue == nameId.IdValue)
+                        .Where(q => ElementIdExtension.GetValue(((GraphicsStyle)q.LineStyle).GraphicsStyleCategory.Id) == nameId.IdValue)
                         .Cast<Element>()
                         .ToList();
                 }
@@ -228,7 +228,7 @@ namespace BoostYourBIMTerrificTools.SelectByType
 #endif
                 .Where(q => q.CategoryType == ctype)
                 .Where(q => new FilteredElementCollector(doc).OfCategoryId(q.Id).Any())
-                .Select(q => new Utils.NameIDObject(q.Name, q.Id.IntegerValue))
+                .Select(q => new Utils.NameIDObject(q.Name, ElementIdExtension.GetValue(q.Id)))
                 .OrderBy(q => q.Name)
                 .Where(q => GetTypes(q).Any())
                 .ToList();

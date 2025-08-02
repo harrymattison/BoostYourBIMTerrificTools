@@ -1,5 +1,6 @@
 ﻿#region Namespaces
 using Autodesk.Revit.DB;
+using BoostYourBIMTerrificTools;
 #endregion // Namespaces
 
 namespace StringSearch
@@ -15,7 +16,7 @@ namespace StringSearch
         public string Family { get; set; }
         public string Symbol { get; set; }
         public string Name { get; set; }
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public ElementData(
           Element e)
@@ -56,7 +57,7 @@ namespace StringSearch
             //Debug.Assert( Name.Equals( Symbol ), 
             //  "expected element name to equal symbol name" );
 
-            Id = e.Id.IntegerValue;
+            Id = ElementIdExtension.GetValue(e.Id);
         }
 
         public override string ToString()
